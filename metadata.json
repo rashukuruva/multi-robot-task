@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix Multi-Robot Task Negotiation \u0026 2D Simulation System",
+  "description": "Autonomous multi-robot task negotiation and real-time 2D simulation coordinating 500 robots and 50 tasks with failure recovery and analytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

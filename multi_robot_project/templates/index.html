@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🤖 Multi-Robot Task Negotiation & 2D Simulation System</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="header">
+      <div class="title-container">
+        <h1>🤖 Multi-Robot Task Negotiation</h1>
+        <p class="subtitle">500 Robots • 50 Tasks • Autonomous Negotiation • Real-Time 2D Simulation</p>
+      </div>
+      <div class="control-actions">
+        <button id="btn-start" class="btn btn-primary">Start Simulation</button>
+        <button id="btn-pause" class="btn btn-secondary">Pause</button>
+        <button id="btn-reset" class="btn btn-secondary">Reset</button>
+        <button id="btn-generate" class="btn btn-secondary">Generate Tasks</button>
+        <button id="btn-assign" class="btn btn-secondary">Assign Tasks</button>
+        <button id="btn-fail" class="btn btn-danger">Simulate Failure</button>
+      </div>
+    </header>
+
+    <!-- Statistics Section -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-label">Total Robots</span>
+        <span class="stat-value" id="stat-total-robots">500</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Total Tasks</span>
+        <span class="stat-value" id="stat-total-tasks">20</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Idle Robots</span>
+        <span class="stat-value stat-idle" id="stat-idle-robots">500</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Busy Robots</span>
+        <span class="stat-value stat-busy" id="stat-busy-robots">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Failed Robots</span>
+        <span class="stat-value stat-failed" id="stat-failed-robots">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Completed Tasks</span>
+        <span class="stat-value stat-completed" id="stat-completed-tasks">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Pending Tasks</span>
+        <span class="stat-value stat-pending" id="stat-pending-tasks">20</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Negotiations</span>
+        <span class="stat-value" id="stat-negotiations">0</span>
+      </div>
+    </section>
+
+    <!-- Main Workspace: 2D Simulation & Inspector -->
+    <div class="workspace-grid">
+      <div class="simulation-panel">
+        <div class="panel-header">
+          <h3>2D Simulation Arena (900 × 600)</h3>
+          <div class="legend">
+            <span class="legend-item"><span class="dot dot-idle"></span> Idle</span>
+            <span class="legend-item"><span class="dot dot-moving"></span> Moving</span>
+            <span class="legend-item"><span class="dot dot-negotiating"></span> Negotiating</span>
+            <span class="legend-item"><span class="dot dot-completed"></span> Completed</span>
+            <span class="legend-item"><span class="dot dot-failed"></span> Failed</span>
+          </div>
+        </div>
+        <canvas id="simCanvas" width="900" height="600"></canvas>
+      </div>
+
+      <div class="side-panel">
+        <div class="detail-card" id="robot-detail">
+          <h4>Robot Inspector</h4>
+          <p class="placeholder-text">Click any active robot to inspect telemetry</p>
+          <div id="robot-info" style="display: none;">
+            <p><strong>ID:</strong> <span id="r-id">-</span></p>
+            <p><strong>Group:</strong> <span id="r-group">-</span></p>
+            <p><strong>Status:</strong> <span id="r-status">-</span></p>
+            <p><strong>Battery:</strong> <span id="r-battery">-</span>%</p>
+            <p><strong>Current Task:</strong> <span id="r-task">-</span></p>
+            <p><strong>Tasks Completed:</strong> <span id="r-completed">-</span></p>
+          </div>
+        </div>
+
+        <div class="detail-card" id="task-detail">
+          <h4>Task Inspector</h4>
+          <p class="placeholder-text">Click any task marker to inspect specifications</p>
+          <div id="task-info" style="display: none;">
+            <p><strong>ID:</strong> <span id="t-id">-</span></p>
+            <p><strong>Priority:</strong> <span id="t-priority">-</span></p>
+            <p><strong>Status:</strong> <span id="t-status">-</span></p>
+            <p><strong>Assigned Robot:</strong> <span id="t-robot">-</span></p>
+            <p><strong>Winning Bid:</strong> <span id="t-bid">-</span></p>
+          </div>
+        </div>
+
+        <div class="detail-card">
+          <h4>Live Negotiation Log</h4>
+          <div class="log-stream" id="log-stream">
+            <div class="log-entry">System initialized. Ready for negotiation.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/simulation.js"></script>
+  <script src="/static/script.js"></script>
+</body>
+</html>
